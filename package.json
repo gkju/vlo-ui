@@ -9,27 +9,45 @@
   "scripts": {
     "build": "tsc",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "pack": "pnpm pack"
   },
   "author": "gkju",
   "license": "ISC",
   "dependencies": {
+    "typescript": "^4.6.3"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "@mui/icons-material": "^5.5.1",
     "@mui/material": "^5.5.3",
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",
+    "@types/react-redux": "^7.1.23",
     "@types/styled-components": "^5.1.24",
     "formik": "^2.2.9",
     "framer-motion": "^6.2.8",
+    "react-router-dom": "^6.3.0",
+    "react-use": "^17.3.2",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "@mui/icons-material": "^5.5.1",
+    "@mui/material": "^5.5.3",
+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
+    "@types/react": "^17.0.43",
+    "@types/react-dom": "^17.0.14",
+    "@types/react-redux": "^7.1.23",
+    "@types/styled-components": "^5.1.24",
+    "formik": "^2.2.9",
+    "framer-motion": "^6.2.8",
     "react-router-dom": "^6.3.0",
     "react-use": "^17.3.2",
     "styled-components": "^5.3.5",
-    "typescript": "^4.6.3"
-  },
-  "devDependencies": {
     "@babel/core": "^7.17.8",
     "@storybook/addon-actions": "^6.4.20",
     "@storybook/addon-essentials": "^6.4.20",
