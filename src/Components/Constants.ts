@@ -1,4 +1,4 @@
-import {MouseEventHandler, ReactElement} from "react";
+import { MouseEventHandler, ReactElement } from 'react';
 
 export interface textInputProps {
     size?: InputSize,
@@ -27,7 +27,7 @@ export interface inputWrapperProps {
 }
 
 export enum InputSize {
-    Big,Medium, Small
+    Big, Medium, Small
 }
 
 export interface ModalProps {
