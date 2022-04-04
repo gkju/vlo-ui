@@ -18,6 +18,17 @@ jobs:
         with:
           always-auth: true
           registry-url: https://npm.pkg.github.com
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.1.0
+        with:
+          run_install: true
       - name: Install dependencies
         run: pnpm install
       - name: Publish
