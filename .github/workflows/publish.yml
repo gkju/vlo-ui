@@ -14,10 +14,11 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v2
       - name: Install Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           always-auth: true
           registry-url: https://npm.pkg.github.com
+          node-version: '16'
       - name: Cache pnpm modules
         uses: actions/cache@v2
         with:
