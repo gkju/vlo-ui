@@ -31,7 +31,5 @@ jobs:
         with:
           version: 6.23.6
           run_install: true
-      - name: Install dependencies
-        run: pnpm install
       - name: Publish
         run: pnpm publish
