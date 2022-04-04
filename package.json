@@ -6,6 +6,10 @@
   "types": "dist/index.d.ts",
   "version": "1.0.0",
   "description": "React components for the vlo website",
+  "repository": "git://github.com:gkju/vlo-accounts-client-axios-ts.git",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "build": "tsc",
     "storybook": "start-storybook -p 6006",
