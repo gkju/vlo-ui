@@ -30,6 +30,7 @@ specifiers:
   eslint-plugin-react: ^7.29.4
   formik: ^2.2.9
   framer-motion: ^6.2.8
+  lottie-react: ^2.2.1
   react: ^18.0.0
   react-dom: ^18.0.0
   react-router-dom: ^6.3.0
@@ -41,6 +42,7 @@ specifiers:
   webpack-cli: ^4.9.2
 
 dependencies:
+  lottie-react: 2.2.1_react-dom@18.0.0+react@18.0.0
   typescript: 4.6.3
 
 devDependencies:
@@ -70,8 +72,8 @@ devDependencies:
   eslint-plugin-react: 7.29.4_eslint@8.12.0
   formik: 2.2.9_react@18.0.0
   framer-motion: 6.2.8_react-dom@18.0.0+react@18.0.0
-  react: link:node_modules/react
-  react-dom: link:node_modules/react-dom
+  react: 18.0.0
+  react-dom: 18.0.0_react@18.0.0
   react-router-dom: 6.3.0_react-dom@18.0.0+react@18.0.0
   react-use: 17.3.2_react-dom@18.0.0+react@18.0.0
   styled-components: 5.3.5_react-dom@18.0.0+react@18.0.0
@@ -8515,6 +8517,21 @@ packages:
       js-tokens: 4.0.0
     dev: true
 
+  /lottie-react/2.2.1_react-dom@18.0.0+react@18.0.0:
+    resolution: {integrity: sha512-lAdIUw+zeHLX3gtyLkisa4QM9NkTUUeZTsEL53laBEsjIH4JibgwkioZuza8CtwZ7/cpPZRbCRXWKfiuaDZWww==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0
+      react-dom: ^16.8.0 || ^17.0.0
+    dependencies:
+      lottie-web: 5.9.1
+      react: 18.0.0
+      react-dom: 18.0.0_react@18.0.0
+    dev: false
+
+  /lottie-web/5.9.1:
+    resolution: {integrity: sha512-3uKtU6BhIK6ZRCE/QyiXq/KuRvPeEAz/VFwqd99jPbpgFY9gHLw2krqvcuCFGepeW94BipS/B3TqIfTc9pUeZg==}
+    dev: false
+
   /lower-case/2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
     dependencies:
@@ -9998,6 +10015,16 @@ packages:
       - supports-color
     dev: true
 
+  /react-dom/18.0.0_react@18.0.0:
+    resolution: {integrity: sha512-XqX7uzmFo0pUceWFCt7Gff6IyIMzFUn7QMZrbrQfGxtaxXZIcGQzoNpRLE3fQLnS4XzLLPMZX2T9TRcSrasicw==}
+    peerDependencies:
+      react: ^18.0.0
+    dependencies:
+      loose-envify: 1.4.0
+      react: 18.0.0
+      scheduler: 0.21.0
+    dev: true
+
   /react-draggable/4.4.4_react-dom@18.0.0+react@18.0.0:
     resolution: {integrity: sha512-6e0WdcNLwpBx/YIDpoyd2Xb04PB0elrDrulKUgdrIlwuYvxh5Ok9M+F8cljm8kPXXs43PmMzek9RrB1b7mLMqA==}
     peerDependencies:
@@ -10198,6 +10225,13 @@ packages:
       throttle-debounce: 3.0.1
       ts-easing: 0.2.0
       tslib: 2.3.1
+    dev: true
+
+  /react/18.0.0:
+    resolution: {integrity: sha512-x+VL6wbT4JRVPm7EGxXhZ8w8LTROaxPXOqhlGyVSrv0sB1jkyFGgXxJ8LVoPRLvPR6/CIZGFmfzqUa2NYeMr2A==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      loose-envify: 1.4.0
     dev: true
 
   /read-pkg-up/7.0.1:
@@ -10584,6 +10618,12 @@ packages:
       micromatch: 3.1.10
       minimist: 1.2.6
       walker: 1.0.8
+    dev: true
+
+  /scheduler/0.21.0:
+    resolution: {integrity: sha512-1r87x5fz9MXqswA2ERLo0EbOAU74DpIUO090gIasYTqlVoJeMcl+Z1Rg7WHz+qtPujhS/hGIt9kxZOYBV3faRQ==}
+    dependencies:
+      loose-envify: 1.4.0
     dev: true
 
   /schema-utils/1.0.0:
