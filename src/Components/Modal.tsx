@@ -43,7 +43,9 @@ export const Modal: FunctionComponent<ModalProps> = (props) => {
     <AnimatePresence onExitComplete={shouldUnlockScroll}>
       {open && (
         <>
-          <ModalDiv variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal" className="Modal">{props.children}</ModalDiv>
+          <Centerer>
+            <ModalDiv variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal" className="Modal">{props.children}</ModalDiv>
+          </Centerer>
           <Backdrop onMouseDown={props.close} variants={backDropVariants} initial="initial" exit="exit" animate="open" key="backdrop" />
         </>
       )}
@@ -52,24 +54,25 @@ export const Modal: FunctionComponent<ModalProps> = (props) => {
   );
 };
 
-const ModalDiv = styled(motion.div)`
+const Centerer = styled.div`
   position: absolute;
-  z-index: 1;
+  z-index: 2137;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
+`
+
+const ModalDiv = styled(motion.div)`
   background: #1D1D28;
   min-width: 60px;
   min-height: 50px;
   padding: 40px 20px;
   border-radius: 20px;
-  transform: translate(-50%, -50%);
-  
   font-family: Raleway, serif;
   font-style: normal;
   font-weight: bold;
   color: white;
   font-size: 15px;
-  
   text-align: center;
 `;
 
