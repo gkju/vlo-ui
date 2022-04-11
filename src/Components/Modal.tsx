@@ -78,7 +78,7 @@ const ModalDiv = styled(motion.div)`
 
 const Backdrop = styled(motion.div)`
   position: absolute;
-  z-index: 0;
+  z-index: 2136;
   top: 0;
   left: 0;
   width: 100vw;
