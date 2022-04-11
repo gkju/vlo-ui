@@ -15,6 +15,5 @@ export const VLoader: FunctionComponent<VLoaderProps> = (props) => {
 
     const { View } = useLottie(options, props?.style);
 
-
     return View;
 }
