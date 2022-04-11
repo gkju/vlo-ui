@@ -63,11 +63,6 @@ const Centerer = styled.div`
 `
 
 const ModalDiv = styled(motion.div)`
-  background: #1D1D28;
-  min-width: 60px;
-  min-height: 50px;
-  padding: 40px 20px;
-  border-radius: 20px;
   font-family: Raleway, serif;
   font-style: normal;
   font-weight: bold;
