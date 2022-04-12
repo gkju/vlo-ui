@@ -19,7 +19,7 @@ export const Modal: FunctionComponent<ModalProps> = (props) => {
     const modals = document.querySelectorAll('.Modal');
     const html = document.querySelector('html');
 
-    if (modals.length === 0 && html !== null) {
+    if (modals.length === 1 && html !== null) {
       html.classList.remove('locked');
     }
   };
@@ -45,7 +45,7 @@ export const Modal: FunctionComponent<ModalProps> = (props) => {
         <>
           <div className="Modal">
             <Centerer>
-              <ModalDiv variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal" className="Modal">{props.children}</ModalDiv>
+              <ModalDiv variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal">{props.children}</ModalDiv>
             </Centerer>
           </div>
           <Backdrop onMouseDown={props.close} variants={backDropVariants} initial="initial" exit="exit" animate="open" key="backdrop" />
