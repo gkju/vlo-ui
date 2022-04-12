@@ -19,7 +19,7 @@ export const Modal: FunctionComponent<ModalProps> = (props) => {
     const modals = document.querySelectorAll('.Modal');
     const html = document.querySelector('html');
 
-    if (modals.length === 0 && html !== null) {
+    if (modals.length === 1 && html !== null) {
       html.classList.remove('locked');
     }
   };
