@@ -43,7 +43,7 @@ export const Modal: FunctionComponent<ModalProps> = (props) => {
     <AnimatePresence onExitComplete={shouldUnlockScroll}>
       {open && (
         <>
-          <div className=".Modal">
+          <div className="Modal">
             <Centerer>
               <ModalDiv variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal" className="Modal">{props.children}</ModalDiv>
             </Centerer>
