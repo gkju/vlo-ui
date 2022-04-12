@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Button } from './Button';
+import styled from "styled-components";
 
 export default {
   title: 'Button',

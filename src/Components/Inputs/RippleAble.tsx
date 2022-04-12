@@ -35,9 +35,9 @@ export const RippleAble: FunctionComponent<RippleAbleProps> = (props) => {
   };
 
   return (
-    <Wrapper style={props.style} onPointerDown={handleDown} onPointerLeave={handleUpOrLeave} onPointerUp={handleUpOrLeave}>
+    <Wrapper {...props} onPointerDown={handleDown} onPointerLeave={handleUpOrLeave} onPointerUp={handleUpOrLeave}>
       {props.children}
-      <WrapperInner style={props.style}>
+      <WrapperInner {...props}>
         <AnimatePresence>
           {ripples.map((ripple) => (
             <motion.div key={ripple.key} initial={{ opacity: 0.4 }} animate={{ opacity: 0.2 }} exit={{ opacity: 0 }}>

@@ -2,16 +2,25 @@ import { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import { ButtonProps, InputSize } from '../Constants';
 import { RippleAble } from './RippleAble';
+import zIndex from "@mui/material/styles/zIndex";
 
 export const Button: FunctionComponent<ButtonProps> = (props) => (
-  <RippleAble style={{ borderRadius: props.radius ? `${props.radius}px` : '20px' }}>
-    <StyledButton {...props} type={props.type}>
-      <TextWrapper>
-        {props.children}
-      </TextWrapper>
-    </StyledButton>
-  </RippleAble>
+    <RippleAble className={props?.className} style={{zIndex: 2, borderRadius: props.radius ? `${props.radius}px` : '20px' }}>
+        <StyledButton {...props} style={{ zIndex: 1}} type={props.type}>
+            <TextWrapper>
+                {props.children}
+            </TextWrapper>
+        </StyledButton>
+    </RippleAble>
 );
+
+const GetWidth = (props: ButtonProps) => {
+    return props?.size === InputSize.Big ? 600 : props?.size === InputSize.Medium ? 435 : 200;
+};
+
+const GetHeight = (props: ButtonProps) => {
+    return props?.squared ? (GetWidth(props) + "px") : "";
+};
 
 const StyledButton = styled('button')<ButtonProps>`
   outline: none;
@@ -19,8 +28,8 @@ const StyledButton = styled('button')<ButtonProps>`
   border-radius: ${(props) => (props.radius ? `${props.radius}px` : '20px')};
   background: ${(props) => (props.primaryColor ? props.primaryColor : '#6D5DD3')};
   color: ${(props) => (props.secondaryColor ? props.secondaryColor : '#FFFFFF')};
-  width:  ${(props) => (props?.size === InputSize.Big ? 600 : props?.size === InputSize.Medium ? 435 : 200)}px;
-  height: ${(props) => props?.squared && (props?.size === InputSize.Big ? 600 : props?.size === InputSize.Medium ? 435 : `${200}px`)};
+  width:  ${(props) => GetWidth(props)}px;
+  height: ${(props) => GetHeight(props)}px;
   font-family: Raleway, serif;
   font-style: normal;
   font-weight: bold;
@@ -45,5 +54,5 @@ const StyledButton = styled('button')<ButtonProps>`
 `;
 
 const TextWrapper = styled.span`
-  z-index: 2;
+  z-index: 3;
 `;

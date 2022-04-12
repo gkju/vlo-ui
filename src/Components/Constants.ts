@@ -11,7 +11,8 @@ export interface textInputProps {
 }
 
 export interface RippleAbleProps {
-    style?: any
+    style?: any,
+    className?: string,
 }
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -19,7 +20,9 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     primaryColor?: string,
     secondaryColor?: string
     squared?: boolean,
-    radius?: number
+    radius?: number,
+    style?: any,
+    className?: string,
 }
 
 export interface inputWrapperProps {
@@ -32,7 +35,7 @@ export enum InputSize {
 
 export interface ModalProps {
     open: Boolean,
-    close: MouseEventHandler<HTMLDivElement>
+    close: MouseEventHandler<HTMLDivElement>,
 }
 
 export interface Item {
