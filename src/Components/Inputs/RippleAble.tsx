@@ -15,14 +15,15 @@ export const RippleAble: FunctionComponent<RippleAbleProps> = (props) => {
 
   const handleDown = (e: any) => {
     const target = e.currentTarget;
+    const rect = target.getBoundingClientRect();
     const maxDim = Math.max(target.clientWidth, target.clientHeight);
     const styles: any = {};
-    styles.left = `${e.clientX - target.offsetLeft - maxDim / 2}px`;
-    styles.top = `${e.clientY - target.offsetTop - maxDim / 2}px`;
+    styles.left = `${e.clientX - rect.left - maxDim / 2}px`;
+    styles.top = `${e.clientY - rect.top - maxDim / 2}px`;
     styles.width = styles.height = maxDim;
     const key = lastKey + 1;
-    setLastKey(key + 1);
-    setRipples([...(ripples ?? []), { key, styles }]);
+    setLastKey(key);
+    setRipples([...ripples, { key, styles }]);
   };
 
   const handleUpOrLeave = (e: any) => {
@@ -34,13 +35,13 @@ export const RippleAble: FunctionComponent<RippleAbleProps> = (props) => {
   };
 
   return (
-    <Wrapper style={props.style} onPointerDown={handleDown} onPointerOut={handleUpOrLeave} onPointerUp={handleUpOrLeave}>
+    <Wrapper style={props.style} onPointerDown={handleDown} onPointerLeave={handleUpOrLeave} onPointerUp={handleUpOrLeave}>
       {props.children}
       <WrapperInner style={props.style}>
         <AnimatePresence>
           {ripples.map((ripple) => (
-            <motion.div key={ripple.key} initial={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <RippleCircle style={ripple.styles} />
+            <motion.div key={ripple.key} initial={{ opacity: 0.4 }} animate={{ opacity: 0.2 }} exit={{ opacity: 0 }}>
+              <RippleCircle key={"A" + ripple.key} initial={{ backgroundColor: "rgb(30, 30, 30)" }} animate={{ backgroundColor: "rgb(0,0,0)"}} exit={{ backgroundColor: "rgb(255, 255, 255)"}} style={ripple.styles} />
             </motion.div>
           ))}
         </AnimatePresence>
@@ -70,10 +71,9 @@ const rippleKeyframes = keyframes`
   }
 `;
 
-const RippleCircle = styled.span`
+const RippleCircle = styled(motion.span)`
   position: absolute;
   border-radius: 50%;
   transform: scale(0);
   animation: ${rippleKeyframes} 700ms ease-in-out forwards;
-  background-color: rgba(255, 255, 255, 0.4);
 `;

@@ -43,9 +43,11 @@ export const Modal: FunctionComponent<ModalProps> = (props) => {
     <AnimatePresence onExitComplete={shouldUnlockScroll}>
       {open && (
         <>
-          <Centerer>
-            <ModalDiv variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal" className="Modal">{props.children}</ModalDiv>
-          </Centerer>
+          <div className=".Modal">
+            <Centerer>
+              <ModalDiv variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal" className="Modal">{props.children}</ModalDiv>
+            </Centerer>
+          </div>
           <Backdrop onMouseDown={props.close} variants={backDropVariants} initial="initial" exit="exit" animate="open" key="backdrop" />
         </>
       )}
