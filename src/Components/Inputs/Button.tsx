@@ -5,7 +5,7 @@ import { RippleAble } from './RippleAble';
 import zIndex from "@mui/material/styles/zIndex";
 
 export const Button: FunctionComponent<ButtonProps> = (props) => (
-    <RippleAble className={props?.className} style={{zIndex: 2, borderRadius: props.radius ? `${props.radius}px` : '20px' }}>
+    <RippleAble className={props?.className} style={Object.assign({zIndex: 2, borderRadius: props.radius ? `${props.radius}px` : '20px' }, props?.wrapperStyle)}>
         <StyledButton {...props} style={{ zIndex: 1}} type={props.type}>
             <TextWrapper>
                 {props.children}

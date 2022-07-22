@@ -23,6 +23,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     radius?: number,
     style?: any,
     className?: string,
+    wrapperStyle?: object
 }
 
 export interface inputWrapperProps {
