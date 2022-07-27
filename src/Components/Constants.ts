@@ -1,4 +1,5 @@
-import { MouseEventHandler, ReactElement } from 'react';
+import React, { MouseEventHandler, ReactElement } from 'react';
+import { Handler } from 'react-use/lib/useKey';
 
 export interface textInputProps {
     size?: InputSize,
@@ -37,6 +38,14 @@ export enum InputSize {
 export interface ModalProps {
     open: Boolean,
     close: MouseEventHandler<HTMLDivElement>,
+}
+
+export interface MinimalModalProps {
+    open: Boolean,
+    close: Function,
+    handler: (input: string) => void,
+    placeholder: string,
+    validator: (input: string) => boolean,
 }
 
 export interface Item {

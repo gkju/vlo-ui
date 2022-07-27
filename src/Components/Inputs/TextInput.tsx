@@ -1,11 +1,11 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, PropsWithChildren, useState } from 'react';
 import styled from 'styled-components';
 import { useField } from 'formik';
 import { motion } from 'framer-motion';
 import { InputSize, inputWrapperProps, textInputProps } from '../Constants';
 import { theme } from '../../theme';
 
-export const TextInput: FunctionComponent<textInputProps> = (props: textInputProps) => {
+export const TextInput: FunctionComponent<PropsWithChildren<textInputProps>> = (props: textInputProps) => {
   const [focused, setFocus] = useState(false);
   const [show, setShow] = useState(false);
 

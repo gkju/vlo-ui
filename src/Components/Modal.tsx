@@ -1,10 +1,10 @@
-import { FunctionComponent, useState, Fragment } from 'react';
+import { FunctionComponent, useState, Fragment, PropsWithChildren } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import styled from 'styled-components';
 import ReactDOM from 'react-dom';
 import { ModalProps } from './Constants';
 
-export const Modal: FunctionComponent<ModalProps> = (props) => {
+export const Modal: FunctionComponent<PropsWithChildren<ModalProps>> = (props) => {
   const { open } = props;
 
   if (open) {
@@ -33,7 +33,7 @@ export const Modal: FunctionComponent<ModalProps> = (props) => {
   const modalVariants = {
     exit: { scale: 0 },
     open: { scale: '100%', transition: { type: 'spring' } },
-    initial: { scale: 0, transition: { type: 'spring', velocity: 2 } },
+    initial: { scale: 0, transition: { type: 'spring' } },
   };
 
   // @ts-ignore
@@ -56,13 +56,13 @@ export const Modal: FunctionComponent<ModalProps> = (props) => {
   );
 };
 
-const Centerer = styled.div`
+export const Centerer = styled.div`
   position: absolute;
   z-index: 2137;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-`
+`;
 
 const ModalDiv = styled(motion.div)`
   font-family: Raleway, serif;

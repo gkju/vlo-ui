@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, PropsWithChildren, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import styled, { keyframes } from 'styled-components';
 import { ButtonProps, InputSize, RippleAbleProps } from '../Constants';
@@ -8,7 +8,7 @@ type Ripple = {
     styles: any
 }
 
-export const RippleAble: FunctionComponent<RippleAbleProps> = (props) => {
+export const RippleAble: FunctionComponent<PropsWithChildren<RippleAbleProps>> = (props) => {
   const arr: Ripple[] = [];
   const [ripples, setRipples] = useState(arr);
   const [lastKey, setLastKey] = useState(0);

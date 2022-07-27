@@ -1,10 +1,10 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 import { ButtonProps, InputSize } from '../Constants';
 import { RippleAble } from './RippleAble';
 import zIndex from "@mui/material/styles/zIndex";
 
-export const Button: FunctionComponent<ButtonProps> = (props) => (
+export const Button: FunctionComponent<PropsWithChildren<ButtonProps>> = (props) => (
     <RippleAble className={props?.className} style={Object.assign({zIndex: 2, borderRadius: props.radius ? `${props.radius}px` : '20px' }, props?.wrapperStyle)}>
         <StyledButton {...props} style={{ zIndex: 1}} type={props.type}>
             <TextWrapper>

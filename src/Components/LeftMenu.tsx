@@ -56,7 +56,7 @@ const ClosestMatch = (Items: Array<Item>, template: string) => {
   return index;
 };
 
-export const Menu: FunctionComponent<MenuProps> = (props) => {
+export const Menu: FunctionComponent<PropsWithChildren<MenuProps>> = (props) => {
   const { width, height } = useWindowSize();
   const refs = useRef<HTMLDivElement[]>([]);
   const location = useLocation();
