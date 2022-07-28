@@ -14,7 +14,8 @@
     "build": "tsc",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "pack": "pnpm pack"
+    "pack": "pnpm pack",
+    "prepublish": "tsc"
   },
   "author": "gkju",
   "license": "ISC",
