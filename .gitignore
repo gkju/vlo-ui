@@ -14,4 +14,4 @@ yarn-error.log*
 .npm/
 dist
 storybook-static
-pnpm-lock.yaml
+pnpm-lock.yaml!/dist/
