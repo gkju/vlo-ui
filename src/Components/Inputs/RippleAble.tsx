@@ -50,7 +50,7 @@ export const RippleAble: FunctionComponent<PropsWithChildren<RippleAbleProps>> =
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   position: relative;
   display: inline-block;
 `;
