@@ -8,7 +8,7 @@ import { RippleAble } from './RippleAble';
 export const EditButton: FunctionComponent<EditButtonProps> = (props) => {
 
   return (
-    <div>
+    <div style={...(props?.style ?? {})}>
       <StyledRipple whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
         <EditButtonStyled {...props}>
           {props.text ?? "Edytuj"}
