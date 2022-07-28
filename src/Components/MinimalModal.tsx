@@ -107,7 +107,7 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
             <Centerer>
               <motion.div animate={{translateX}}>
                 <MinimalModalDiv variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal">
-                  <StyledInput error={error} onChange={handleChange} value={value} type="text" placeholder="Enter your name" />
+                  <StyledInput error={error} onChange={handleChange} value={value} type="text" placeholder={props.placeholder} />
                 </MinimalModalDiv>
               </motion.div>
             </Centerer>
