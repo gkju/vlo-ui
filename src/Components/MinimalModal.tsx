@@ -64,6 +64,8 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
     setError(!r);
     if(r) {
       props.handler(value);
+      setValue('');
+      setError(false);
       props.close();
     }
   }
