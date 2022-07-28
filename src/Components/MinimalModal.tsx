@@ -33,7 +33,7 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
 
   const backDropVariants = {
     exit: { opacity: 0 },
-    open: { opacity: 1 },
+    open: { opacity: 0.98 },
     initial: { opacity: 0 },
   };
 
@@ -140,7 +140,6 @@ const Backdrop = styled(motion.div)`
   width: 100vw;
   height: 100vh;
   background: ${theme.primaryShade};
-  opacity: 0.6;
 `;
 
 const StyledInput = styled.input<{error?: boolean}>`

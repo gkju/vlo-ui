@@ -25,6 +25,7 @@ const Template: ComponentStory<typeof MinimalModal> = ({ ...props }) => (
   <>
     <div id="modalRoot"></div>
     <MinimalModal {...props} />
+    background
   </>
 );
 
