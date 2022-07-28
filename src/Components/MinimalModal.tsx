@@ -102,7 +102,7 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
 
 const MinimalModalDiv = styled(motion.div)`
   width: 600px;
-  height: 200px;
+  height: 90px;
   max-width: 80vw;
   max-height: 26vh;
   display: flex;
