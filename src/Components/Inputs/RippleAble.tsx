@@ -55,7 +55,7 @@ const Wrapper = styled(motion.div)`
   display: inline-block;
 `;
 
-const WrapperInner = styled.div`
+const WrapperInner = styled(motion.div)`
   position: absolute;
   overflow: hidden;
   width: 100%;
