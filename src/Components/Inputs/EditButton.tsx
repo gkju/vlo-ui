@@ -23,7 +23,7 @@ const StyledRipple = styled(RippleAble)`
 `;
 
 const EditButtonStyled = styled(motion.button)`
-  background: ${theme.primaryShade};
+  background: ${theme.primary};
   color: rgba(255, 255, 255, 0.3);
   border-radius: 15px;
   padding: 15px 25px;
