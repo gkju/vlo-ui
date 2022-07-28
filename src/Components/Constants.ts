@@ -29,7 +29,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     type?: 'button' | 'submit' | 'reset' | undefined,
 }
 
-export interface EditButtonProps {
+export interface EditButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     style?: any,
     text?: string,
     className?: string,
