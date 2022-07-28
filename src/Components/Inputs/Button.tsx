@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import { ButtonProps, InputSize } from '../Constants';
 import { RippleAble } from './RippleAble';
 import zIndex from "@mui/material/styles/zIndex";
+import { motion } from 'framer-motion';
 
 export const Button: FunctionComponent<PropsWithChildren<ButtonProps>> = (props) => (
     <RippleAble className={props?.className} style={Object.assign({zIndex: 2, borderRadius: props.radius ? `${props.radius}px` : '20px' }, props?.wrapperStyle)}>
-        <StyledButton {...props} style={{ zIndex: 1}} type={props.type}>
+        <StyledButton {...props} style={{ zIndex: 1}} type={props?.type}>
             <TextWrapper>
                 {props.children}
             </TextWrapper>
@@ -22,7 +23,7 @@ const GetHeight = (props: ButtonProps) => {
     return props?.squared ? (GetWidth(props) + "px") : "";
 };
 
-const StyledButton = styled('button')<ButtonProps>`
+const StyledButton = styled.button<ButtonProps>`
   outline: none;
   border: none;
   border-radius: ${(props) => (props.radius ? `${props.radius}px` : '20px')};

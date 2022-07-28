@@ -1,5 +1,6 @@
 import React, { MouseEventHandler, ReactElement } from 'react';
 import { Handler } from 'react-use/lib/useKey';
+import { MotionProps } from 'framer-motion';
 
 export interface textInputProps {
     size?: InputSize,
@@ -11,7 +12,7 @@ export interface textInputProps {
     placeholder: string
 }
 
-export interface RippleAbleProps {
+export interface RippleAbleProps extends MotionProps {
     style?: any,
     className?: string,
 }
@@ -24,7 +25,8 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     radius?: number,
     style?: any,
     className?: string,
-    wrapperStyle?: object
+    wrapperStyle?: object,
+    type?: 'button' | 'submit' | 'reset' | undefined,
 }
 
 export interface EditButtonProps {
