@@ -32,6 +32,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 export interface EditButtonProps {
     style?: any,
     text?: string,
+    className?: string,
 }
 
 export interface inputWrapperProps {
