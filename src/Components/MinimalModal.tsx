@@ -7,6 +7,7 @@ import { Centerer } from './Modal';
 import { theme } from '../theme';
 import { useKeyPressEvent } from 'react-use';
 import { Handler } from 'react-use/lib/useKey';
+import { useCancellables } from '../Utils/UseCancelTimeouts';
 
 export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
   const { open } = props;
@@ -59,14 +60,24 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
   }
 
   const [error, setError] = useState(false);
+  const handleStates = useCancellables();
+  const [translateX, setTranslateX] = useState(0);
   const handleSubmit: Handler = (e) => {
     let r = props.validator(value);
     setError(!r);
     if(r) {
       props.handler(value);
-      setValue('');
-      setError(false);
+      reset();
       props.close();
+    } else {
+      const states: [Function, number][] = [
+        [() => setTranslateX(-20), 50],
+        [() => setTranslateX(40), 100],
+        [() => setTranslateX(-60), 150],
+        [() => setTranslateX(0), 200],
+      ];
+
+      handleStates(states);
     }
   }
 
@@ -80,8 +91,13 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
     }
   };
 
+  const reset = () => {
+    setValue('');
+    setError(false);
+  };
+
   useKeyPressEvent('Enter', handleSubmit);
-  useKeyPressEvent('Escape', e => {e.preventDefault(); props.close();});
+  useKeyPressEvent('Escape', e => {e.preventDefault(); reset(); props.close();});
 
   return ReactDOM.createPortal(
     <AnimatePresence onExitComplete={shouldUnlockScroll}>
@@ -89,9 +105,11 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
         <>
           <div className="Modal">
             <Centerer>
-              <MinimalModalDiv variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal">
+              <motion.div animate={{translateX}}>
+                <MinimalModalDiv variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal">
                   <StyledInput error={error} onChange={handleChange} value={value} type="text" placeholder="Enter your name" />
-              </MinimalModalDiv>
+                </MinimalModalDiv>
+              </motion.div>
             </Centerer>
           </div>
           <Backdrop onMouseDown={e => props.close()} variants={backDropVariants} initial="initial" exit="exit" animate="open" key="backdrop" />
