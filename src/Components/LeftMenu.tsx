@@ -84,7 +84,7 @@ export const Menu: FunctionComponent<PropsWithChildren<MenuProps>> = (props) => 
 
   return (
     <MenuBase $mobile={horizontal}>
-      <MenuHighlighter $mobile={horizontal} as={motion.div} animate={horizontal ? { x: offset } : { y: offset }} transition={{type: "spring", bounce: 0.2, velocity: 2}} />
+      <MenuHighlighter $mobile={horizontal} as={motion.div} animate={horizontal ? { x: offset } : { y: offset }} transition={{type: "spring", mass: 1, damping: 15, stiffness: 150}} />
       {
               Items.map((item, index) => (
                 <MenuItem $mobile={horizontal} onClick={() => navigate(item.route)} animate={{ opacity: highlighterIndex === index ? 1 : 0.3 }} as={motion.div} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} key={index} ref={(el: (HTMLDivElement | null)) => (el ? refs.current[index] = el : <></>)}>
