@@ -11,7 +11,7 @@ import { useCancellables } from '../Utils/UseCancelTimeouts';
 
 export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
   const { open } = props;
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(props?.initialValue ?? '');
 
   if (open) {
     const html = document.querySelector('html');

@@ -54,6 +54,7 @@ export interface MinimalModalProps {
     handler: (input: string) => void,
     placeholder: string,
     validator: (input: string) => boolean,
+    initialValue?: string,
 }
 
 export interface Item {
