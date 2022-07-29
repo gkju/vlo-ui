@@ -21,6 +21,7 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
   }
 
   if (document.activeElement) {
+    // @ts-ignore
     document?.activeElement.blur();
   }
 
