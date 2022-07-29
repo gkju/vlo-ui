@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, Fragment, FormEventHandler, FormEvent } from 'react';
+import React, { FunctionComponent, useState, Fragment, FormEventHandler, FormEvent, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import styled from 'styled-components';
 import ReactDOM from 'react-dom';
@@ -20,10 +20,12 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
     }
   }
 
-  if (document.activeElement) {
-    // @ts-ignore
-    document?.activeElement.blur();
-  }
+  useEffect(() => {
+    if (open && document.activeElement) {
+      // @ts-ignore
+      document?.activeElement.blur();
+    }
+  }, [open]);
 
   const shouldUnlockScroll = () => {
     const modals = document.querySelectorAll('.Modal');
