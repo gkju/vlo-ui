@@ -32,10 +32,10 @@
   "peerDependencies": {
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
     "typescript": "^4.7.4",
-    "@types/react": "^17.0.43",
-    "@types/react-dom": "^17.0.14",
-    "@types/react-redux": "^7.1.23",
-    "@types/styled-components": "^5.1.24",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@types/react-redux": "^7.1.24",
+    "@types/styled-components": "^5.1.25",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-use": "^17.4.0"
