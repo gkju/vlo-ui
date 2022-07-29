@@ -15,10 +15,13 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
 
   if (open) {
     const html = document.querySelector('html');
-
     if (html !== null) {
       html.classList.add('locked');
     }
+  }
+
+  if (document.activeElement) {
+    document?.activeElement.blur();
   }
 
   const shouldUnlockScroll = () => {
@@ -107,7 +110,7 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
             <Centerer>
               <motion.div animate={{translateX}}>
                 <MinimalModalDiv variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal">
-                  <StyledInput error={error} onChange={handleChange} value={value} type="text" placeholder={props.placeholder} />
+                  <StyledInput autoFocus error={error} onChange={handleChange} value={value} type="text" placeholder={props.placeholder} />
                 </MinimalModalDiv>
               </motion.div>
             </Centerer>
