@@ -24,7 +24,6 @@ export const RippleAble: FunctionComponent<PropsWithChildren<RippleAbleProps>> =
   const handleStates = useCancellables();
   useEffect(() => { ripplesRef.current = ripples; }, [ripples]);
 
-  console.log(ripples.length, ripples);
   const handleDown: PointerEventHandler = (e) => {
     e.preventDefault();
     const target = e.currentTarget;
@@ -41,7 +40,6 @@ export const RippleAble: FunctionComponent<PropsWithChildren<RippleAbleProps>> =
   };
 
   const shiftRipples = () => {
-    console.log('shifting', ripplesRef.current);
     setRipples(ripplesRef.current.slice(1));
   };
   const handleUpOrLeave: PointerEventHandler = (e) => {
@@ -62,7 +60,7 @@ export const RippleAble: FunctionComponent<PropsWithChildren<RippleAbleProps>> =
       <WrapperInner id="wrap" {...props}>
           {ripples.map((ripple) => (
             <motion.div key={ripple.key} transition={{duration: 2}} initial={{ opacity: 0.4 }} animate={{ opacity: ripple.vis ? 0.2 : 0 }}>
-              <RippleCircle key={`${ripple.key}a`} initial={{ backgroundColor: "rgb(30, 30, 30)" }} animate={{ backgroundColor: ripple.vis ? 'rgb(0,0,0)' : 'rgb(40, 40, 40)' }} style={ripple.styles} />
+              <RippleCircle key={`${ripple.key}a`} initial={{ backgroundColor: "rgb(30, 30, 30)" }} animate={{ backgroundColor: ripple.vis ? 'rgba(0,0,0,1)' : 'rgba(0, 0, 0, 0)' }} style={ripple.styles} />
             </motion.div>
           ))}
       </WrapperInner>
@@ -87,7 +85,7 @@ const WrapperInner = styled(motion.div)`
 
 const rippleKeyframes = keyframes`
   to {
-    transform: scale(4);
+    transform: scale(5);
   }
 `;
 
@@ -95,5 +93,5 @@ const RippleCircle = styled(motion.span)`
   position: absolute;
   border-radius: 50%;
   transform: scale(0);
-  animation: ${rippleKeyframes} 700ms ease-in-out forwards;
+  animation: ${rippleKeyframes} 700ms ease-in forwards;
 `;

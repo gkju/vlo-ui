@@ -53,7 +53,10 @@ export interface MinimalModalProps {
     close: Function,
     handler: (input: string) => void,
     placeholder: string,
-    validator: (input: string) => boolean,
+     /**
+     * @returns null if input is valid, otherwise returns error message
+     */
+    validator: (input: string) => string | null,
     initialValue?: string,
 }
 
