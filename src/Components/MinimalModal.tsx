@@ -30,7 +30,6 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
   const shouldUnlockScroll = () => {
     const modals = document.querySelectorAll('.Modal');
     const html = document.querySelector('html');
-    const [error, setError] = useState(false);
 
     if (modals.length === 1 && html !== null) {
       html.classList.remove('locked');
@@ -65,17 +64,19 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
     domNode = div;
   }
 
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
+  const [touched, setTouched] = useState(false);
   const handleStates = useCancellables();
   const [translateX, setTranslateX] = useState(0);
-  const handleSubmit: Handler = (e) => {
-    let r = props.validator(value);
-    setError(!r);
-    if(r) {
-      props.handler(value);
+  const handleSubmit: Handler = async (e) => {
+    try {
+      await props.validator(value);
+      setError('');
+      await props.handler(value);
       reset();
-      props.close();
-    } else {
+      await props.close();
+    } catch (err) {
+      setError(err?.message ?? 'err');
       const states: [Function, number][] = [
         [() => setTranslateX(-20), 50],
         [() => setTranslateX(40), 100],
@@ -85,21 +86,28 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
 
       handleStates(states);
     }
-  }
+  };
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = async (e) => {
     e.preventDefault();
     setValue(e.target?.value);
-    if(e.target?.value.length > 3) {
-      setError(!props.validator(value));
+    if (e.target?.value.length > 3 || touched) {
+      try {
+        setTouched(true);
+        await props.validator(e.target?.value);
+        setError('');
+      } catch (err) {
+        setError(err?.message ?? 'err');
+      }
     } else {
-      setError(false);
+      setError('');
     }
   };
 
   const reset = () => {
     setValue('');
-    setError(false);
+    setError('');
+    setTouched(false);
   };
 
   useKeyPressEvent('Enter', handleSubmit);
@@ -111,11 +119,12 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
         <>
           <div className="Modal">
             <Centerer>
-              <motion.div animate={{translateX}}>
+              <Wrapper animate={{translateX}}>
                 <MinimalModalDiv variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal">
-                  <StyledInput autoFocus error={error} onChange={handleChange} value={value} type="text" placeholder={props.placeholder} />
+                  <StyledInput autoFocus error={error.length > 0} onChange={handleChange} value={value} type="text" placeholder={props.placeholder} />
                 </MinimalModalDiv>
-              </motion.div>
+                <Error>{error}</Error>
+              </Wrapper>
             </Centerer>
           </div>
           <Backdrop onMouseDown={e => props.close()} variants={backDropVariants} initial="initial" exit="exit" animate="open" key="backdrop" />
@@ -125,6 +134,12 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
     domNode,
   );
 };
+
+const Wrapper = styled(motion.div)`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
 
 const MinimalModalDiv = styled(motion.div)`
   width: 600px;
@@ -136,6 +151,7 @@ const MinimalModalDiv = styled(motion.div)`
   align-content: center;
   align-items: center;
   border-radius: 20px;
+  margin-top: calc(50vh - min(45px, 13vh));
 `;
 
 const Backdrop = styled(motion.div)`
@@ -165,4 +181,12 @@ const StyledInput = styled.input<{error?: boolean}>`
       color: white;
       box-shadow: ${(props) => !props?.error && '0px 0px 5px 5px #6D5DD3'};;
     }
-`
+`;
+
+const Error = styled.p`
+  color: #f44336;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  font-size: 15px;
+  margin-top: 15px;
+`;

@@ -31,5 +31,7 @@ const Template: ComponentStory<typeof MinimalModal> = ({ ...props }) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  validator: (s) => {console.log(s); return s.length > 5;},
+  validator: (s) => { console.log(s.length); if (s.length < 5) {throw new Error('too short');} },
+  handler: console.log,
+  close: console.log,
 };
