@@ -10,8 +10,8 @@ import { Handler } from 'react-use/lib/useKey';
 import { useCancellables } from '../Utils/UseCancelTimeouts';
 
 export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
-  const { open } = props;
-  const [value, setValue] = useState(props?.initialValue ?? '');
+  const { open, initialValue } = props;
+  const [value, setValue] = useState(initialValue ?? '');
 
   if (open) {
     const html = document.querySelector('html');
@@ -75,7 +75,7 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
       await props.handler(value);
       reset();
       await props.close();
-    } catch (err) {
+    } catch (err: any) {
       setError(err?.message ?? 'err');
       const states: [Function, number][] = [
         [() => setTranslateX(-20), 50],
@@ -96,7 +96,7 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
         setTouched(true);
         await props.validator(e.target?.value);
         setError('');
-      } catch (err) {
+      } catch (err: any) {
         setError(err?.message ?? 'err');
       }
     } else {
@@ -119,7 +119,7 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
         <>
           <div className="Modal">
             <Centerer>
-              <Wrapper animate={{translateX}}>
+              <Wrapper animate={{translateX}} onPointerDown={() => props.close()}>
                 <MinimalModalDiv variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal">
                   <StyledInput autoFocus error={error.length > 0} onChange={handleChange} value={value} type="text" placeholder={props.placeholder} />
                 </MinimalModalDiv>
