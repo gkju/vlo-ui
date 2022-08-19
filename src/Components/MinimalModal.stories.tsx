@@ -33,5 +33,5 @@ export const Default = Template.bind({});
 Default.args = {
   validator: (s) => { console.log(s.length); if (s.length < 5) {throw new Error('too short');} },
   handler: console.log,
-  close: console.log,
+  close: () => console.log("close"),
 };

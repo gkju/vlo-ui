@@ -1,12 +1,14 @@
-import React, { FunctionComponent, useState, Fragment, FormEventHandler, FormEvent, useEffect } from 'react';
+import React, {
+  FunctionComponent, useState, Fragment, FormEventHandler, FormEvent, useEffect, useRef,
+} from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import styled from 'styled-components';
 import ReactDOM from 'react-dom';
+import { useKeyPressEvent } from 'react-use';
+import { Handler } from 'react-use/lib/useKey';
 import { MinimalModalProps, ModalProps } from './Constants';
 import { Centerer } from './Modal';
 import { theme } from '../theme';
-import { useKeyPressEvent } from 'react-use';
-import { Handler } from 'react-use/lib/useKey';
 import { useCancellables } from '../Utils/UseCancelTimeouts';
 
 export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
@@ -27,6 +29,10 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
     }
   }, [open]);
 
+  useEffect(() => {
+    setValue(initialValue ?? '');
+  }, [initialValue]);
+
   const shouldUnlockScroll = () => {
     const modals = document.querySelectorAll('.Modal');
     const html = document.querySelector('html');
@@ -43,23 +49,29 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
   };
 
   const modalVariants = {
-    exit: { opacity: 0 ,
-      background: "#252533",
-      boxShadow: 'inset 0px 0px 0px #13131B, inset 0px 0px 0px #272735'},
-    open: { opacity: '100%',
-      background: "#1D1D28",
+    exit: {
+      opacity: 0,
+      background: '#252533',
+      boxShadow: 'inset 0px 0px 0px #13131B, inset 0px 0px 0px #272735',
+    },
+    open: {
+      opacity: '100%',
+      background: '#1D1D28',
       translateY: '0vh',
       boxShadow: 'inset 5.71px 5.71px 25px #121219, inset -5.71px -5.71px 25px #282837',
-      transition: {boxShadow: {delay: 2, duration: 3}, background: {duration: 2}, translateY: {type: 'spring', stiffness: 100, damping: 15}}},
-    initial: { opacity: 0 ,
+      transition: { boxShadow: { delay: 2, duration: 3 }, background: { duration: 2 }, translateY: { type: 'spring', stiffness: 100, damping: 15 } },
+    },
+    initial: {
+      opacity: 0,
       translateY: '-50vh',
-      background: "#252533",
-      boxShadow: 'inset 0px 0px 0px #13131B, inset 0px 0px 0px #272735'},
+      background: '#252533',
+      boxShadow: 'inset 0px 0px 0px #13131B, inset 0px 0px 0px #272735',
+    },
   };
 
   let domNode = document.getElementById('modalRoot');
-  if(!domNode) {
-    let div = document.createElement('div');
+  if (!domNode) {
+    const div = document.createElement('div');
     div.setAttribute('id', 'modalRoot');
     domNode = div;
   }
@@ -109,9 +121,10 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
     setError('');
     setTouched(false);
   };
+  const ref = useRef(null);
 
   useKeyPressEvent('Enter', handleSubmit);
-  useKeyPressEvent('Escape', e => {e.preventDefault(); reset(); props.close();});
+  useKeyPressEvent('Escape', (e) => { e.preventDefault(); reset(); props.close(); });
 
   return ReactDOM.createPortal(
     <AnimatePresence onExitComplete={shouldUnlockScroll}>
@@ -119,15 +132,23 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
         <>
           <div className="Modal">
             <Centerer>
-              <Wrapper animate={{translateX}} onPointerDown={() => props.close()}>
-                <MinimalModalDiv variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal">
+              <Wrapper
+                animate={{ translateX }}
+                onPointerDown={(e) => {
+                  // @ts-ignore
+                  if (ref?.current && !ref?.current?.contains(e.target)) {
+                    props.close();
+                  }
+                }}
+              >
+                <MinimalModalDiv ref={ref} variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal">
                   <StyledInput autoFocus error={error.length > 0} onChange={handleChange} value={value} type="text" placeholder={props.placeholder} />
                 </MinimalModalDiv>
                 <Error>{error}</Error>
               </Wrapper>
             </Centerer>
           </div>
-          <Backdrop onMouseDown={e => props.close()} variants={backDropVariants} initial="initial" exit="exit" animate="open" key="backdrop" />
+          <Backdrop onMouseDown={(e) => props.close()} variants={backDropVariants} initial="initial" exit="exit" animate="open" key="backdrop" />
         </>
       )}
     </AnimatePresence>,
