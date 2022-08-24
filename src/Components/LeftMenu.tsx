@@ -18,6 +18,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useWindowSize } from 'react-use';
 import { theme } from '../theme';
 import { Item, MenuProps } from './Constants';
+import { Logout } from '@mui/icons-material';
 
 let Items: Array<Item> = [
   {
@@ -35,6 +36,10 @@ let Items: Array<Item> = [
   {
     route: '/ExternalLogins',
     icon: <GoogleIcon sx={{ fontSize: 'inherit' }} />,
+  },
+  {
+    route: '/Logout',
+    icon: <Logout sx={{ fontSize: 'inherit' }} />,
   },
 ];
 

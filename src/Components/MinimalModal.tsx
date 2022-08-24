@@ -124,6 +124,7 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
   const ref = useRef(null);
 
   const [alt, setAlt] = useState(false);
+
   useKeyPressEvent('Alt', () => {
     setAlt(true);
   }, () => {
