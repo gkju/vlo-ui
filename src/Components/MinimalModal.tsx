@@ -123,6 +123,12 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
   };
   const ref = useRef(null);
 
+  const [alt, setAlt] = useState(false);
+  useKeyPressEvent('Alt', () => {
+    setAlt(true);
+  }, () => {
+    setAlt(false);
+  });
   useKeyPressEvent('Enter', handleSubmit);
   useKeyPressEvent('Escape', (e) => { e.preventDefault(); reset(); props.close(); });
 
@@ -143,7 +149,7 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
                 }}
               >
                 <MinimalModalDiv ref={ref} variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal">
-                  <StyledInput autoFocus error={error.length > 0} onChange={handleChange} value={value} type="text" placeholder={props.placeholder} />
+                  <StyledInput autoFocus error={error.length > 0} onChange={handleChange} value={value} type={props?.password && !alt ? 'password' : 'text'} placeholder={props.placeholder} />
                 </MinimalModalDiv>
                 <Error>{error}</Error>
               </Wrapper>

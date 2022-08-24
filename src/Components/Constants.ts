@@ -58,6 +58,7 @@ export interface MinimalModalProps {
      */
     validator: (input: string) => void,
     initialValue?: string,
+    password?: boolean,
 }
 
 export interface Item {
