@@ -38,7 +38,7 @@ let Items: Array<Item> = [
     icon: <GoogleIcon sx={{ fontSize: 'inherit' }} />,
   },
   {
-    route: '/Logout',
+    route: '/LogoutRequest',
     icon: <Logout sx={{ fontSize: 'inherit' }} />,
   },
 ];
