@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { FormikProvider, useFormik } from 'formik';
+import { Formik } from 'formik';
 import { TextInput } from './TextInput';
 
 export default {
@@ -9,15 +9,14 @@ export default {
 } as ComponentMeta<typeof TextInput>;
 
 const Template: ComponentStory<typeof TextInput> = ({ children, ...props }) => {
-  const Formik = useFormik({
-    initialValues: { example: '' },
-    onSubmit: console.log,
-  });
 
   return (
-    <FormikProvider value={Formik}>
+    <Formik
+      initialValues={{ example: '' }}
+      onSubmit={console.log}
+    >
       <TextInput {...props}>{children}</TextInput>
-    </FormikProvider>
+    </Formik>
   );
 };
 

@@ -20,25 +20,25 @@
   "author": "gkju",
   "license": "ISC",
   "dependencies": {
+    "@mui/icons-material": "latest",
+    "@mui/material": "latest",
+    "formik": "^2.2.9",
+    "framer-motion": "^6.2.8",
     "lottie-react": "^2.3.1",
     "react-is": "^18.2.0",
-    "styled-components": "^5.3.5",
-    "formik": "latest",
-    "framer-motion": "^6.2.8",
     "react-router-dom": "^6.3.0",
-    "@mui/icons-material": "latest",
-    "@mui/material": "latest"
+    "styled-components": "^5.3.5"
   },
   "peerDependencies": {
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
-    "typescript": "^4.7.4",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@types/react-redux": "^7.1.24",
     "@types/styled-components": "^5.1.25",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-use": "^17.4.0"
+    "react-use": "^17.4.0",
+    "typescript": "^4.7.4"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
