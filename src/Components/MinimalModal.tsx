@@ -137,6 +137,7 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
                 onPointerDown={(e) => {
                   // @ts-ignore
                   if (ref?.current && !ref?.current?.contains(e.target)) {
+                    reset();
                     props.close();
                   }
                 }}
@@ -148,7 +149,7 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
               </Wrapper>
             </Centerer>
           </div>
-          <Backdrop onMouseDown={(e) => props.close()} variants={backDropVariants} initial="initial" exit="exit" animate="open" key="backdrop" />
+          <Backdrop onMouseDown={(e) => { reset(); props.close(); }} variants={backDropVariants} initial="initial" exit="exit" animate="open" key="backdrop" />
         </>
       )}
     </AnimatePresence>,
