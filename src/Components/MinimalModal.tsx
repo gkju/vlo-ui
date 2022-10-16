@@ -69,10 +69,10 @@ export const MinimalModal: FunctionComponent<MinimalModalProps> = (props) => {
     },
   };
 
-  let domNode = document.getElementById('modalRoot');
+  let domNode = document.getElementById('minimalModalRoot');
   if (!domNode) {
     const div = document.createElement('div');
-    div.setAttribute('id', 'modalRoot');
+    div.setAttribute('id', 'minimalModalRoot');
     domNode = div;
   }
 

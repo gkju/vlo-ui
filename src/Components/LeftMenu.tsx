@@ -48,7 +48,7 @@ const ClosestMatch = (Items: Array<Item>, template: string) => {
   let length = 0;
   for (let i = 0; i < Items.length; ++i) {
     let itemIndex = 0;
-    while (itemIndex < Items[i].route.length && Items[i].route[itemIndex] === template[itemIndex]) {
+    while (itemIndex < Math.min(Items[i].route.length, template.length) && Items[i].route[itemIndex] === template[itemIndex]) {
       ++itemIndex;
     }
 
