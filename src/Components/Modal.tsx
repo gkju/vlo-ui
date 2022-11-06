@@ -9,7 +9,7 @@ export const Modal: FunctionComponent<PropsWithChildren<ModalProps>> = (props) =
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
-    const offset = document.documentElement.scrollTop || document.body.scrollTop;
+    const offset = window.scrollY;
     setOffset(offset);
   });
 
@@ -49,7 +49,7 @@ export const Modal: FunctionComponent<PropsWithChildren<ModalProps>> = (props) =
     <AnimatePresence onExitComplete={shouldUnlockScroll}>
       {open && (
         <>
-          <div className="Modal" style={{marginTop: offset + "px"}}>
+          <div className="Modal" style={{transform: "translateY(" + offset + "px)"}}>
             <Centerer>
               <ModalDiv variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal">{props.children}</ModalDiv>
             </Centerer>
