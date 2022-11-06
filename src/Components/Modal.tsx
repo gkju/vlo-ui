@@ -1,4 +1,4 @@
-import { FunctionComponent, useState, Fragment, PropsWithChildren } from 'react';
+import { FunctionComponent, useState, Fragment, PropsWithChildren, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import styled from 'styled-components';
 import ReactDOM from 'react-dom';
@@ -8,12 +8,15 @@ export const Modal: FunctionComponent<PropsWithChildren<ModalProps>> = (props) =
   const { open } = props;
   const [offset, setOffset] = useState(0);
 
+  useEffect(() => {
+    const offset = document.documentElement.scrollTop || document.body.scrollTop;
+    setOffset(offset);
+  });
+
   if (open) {
     const html = document.querySelector('html');
 
     if (html !== null) {
-      const offset = document.documentElement.scrollTop || document.body.scrollTop;
-      setOffset(offset);
       html.classList.add('locked');
     }
   }
