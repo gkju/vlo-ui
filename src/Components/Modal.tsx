@@ -6,11 +6,14 @@ import { ModalProps } from './Constants';
 
 export const Modal: FunctionComponent<PropsWithChildren<ModalProps>> = (props) => {
   const { open } = props;
+  const [offset, setOffset] = useState(0);
 
   if (open) {
     const html = document.querySelector('html');
 
     if (html !== null) {
+      const offset = document.documentElement.scrollTop || document.body.scrollTop;
+      setOffset(offset);
       html.classList.add('locked');
     }
   }
@@ -43,7 +46,7 @@ export const Modal: FunctionComponent<PropsWithChildren<ModalProps>> = (props) =
     <AnimatePresence onExitComplete={shouldUnlockScroll}>
       {open && (
         <>
-          <div className="Modal">
+          <div className="Modal" style={{marginTop: offset + "px"}}>
             <Centerer>
               <ModalDiv variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal">{props.children}</ModalDiv>
             </Centerer>
