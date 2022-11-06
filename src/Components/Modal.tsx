@@ -49,7 +49,7 @@ export const Modal: FunctionComponent<PropsWithChildren<ModalProps>> = (props) =
     <AnimatePresence onExitComplete={shouldUnlockScroll}>
       {open && (
         <>
-          <div className="Modal" style={{transform: "translateY(" + offset + "px)"}}>
+          <div className="Modal" style={{transform: "translateY(" + String(Math.max(offset - window.innerHeight,0)) + "px)"}}>
             <Centerer>
               <ModalDiv variants={modalVariants} initial="initial" exit="exit" animate="open" key="modal">{props.children}</ModalDiv>
             </Centerer>
